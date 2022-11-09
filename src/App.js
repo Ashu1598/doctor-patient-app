@@ -9,27 +9,28 @@ import Doctor from "./components/Doctor"
 import DoctorDashboard from "./components/Doctor/DoctorDashboard"
 import DoctorAppointmentRequest from "./components/Doctor/DoctorAppointmentRequest"
 import DoctorAppointment from "./components/Doctor/DoctorAppointment"
+import Authenticated from "./Utils/Authenticated"
 
 
 
 
 const App = () => (
   <>
-      <Routes>
-        <Route path='/' element={<DefaultLayout/>}>
-          <Route index element={<HomePage />} />
-          <Route path='login' element={<Login/>}/>
-          <Route path='doctor' element={<Doctor/>}>
-            <Route path='dashboard' element={<DoctorDashboard/>}/>
-            <Route path='appointmentreq' element={<DoctorAppointmentRequest/>}/>
-            <Route path='appointment' element={<DoctorAppointment/>}/>
-           
+    <Routes>
+      <Route path='/' element={<DefaultLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path='login' element={<Login />} />
+        <Route element={<Authenticated />}>
+          <Route path='doctor' element={<Doctor />} >
+            <Route path='dashboard' element={<DoctorDashboard />} />
+            <Route path='appointmentreq' element={<DoctorAppointmentRequest />} />
+            <Route path='appointment' element={<DoctorAppointment />} />
           </Route>
-          
         </Route>
-      </Routes>
+      </Route>
+    </Routes>
 
-      
+
   </>
 
 )
